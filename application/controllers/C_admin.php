@@ -8,6 +8,7 @@ class C_admin extends CI_Controller {
     parent::__construct();
 		 $this->load->model('M_admin');
 		 $this->load->model('M_mataKuliah');
+		 $this->load->model('M_dosen');
 		 $this->load->helper('url_helper');
   }
 
@@ -19,9 +20,10 @@ class C_admin extends CI_Controller {
         }
 				else {
 
-				$data['title'] = "Manajemen Posting - Admin";
+
         $array1 = $this->M_mataKuliah->getMataKuliah();
 				$array2 = $this->M_dosen->getDosen();
+				$data['title'] = 'Dashboard Admin';
         $data['matkul'] = $array1;
 				$data['dosen'] = $array2;
 

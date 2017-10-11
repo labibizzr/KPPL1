@@ -12,11 +12,11 @@ class M_mataKuliah extends CI_Model
   public function getMataKuliah($kode=FALSE){
 
       if($kode==FALSE){
-        $query = $this->db->get('mata_kuliah');
+        $query = $this->db->get('mahasiswa');
         return $query->result_array();
       }
       else {
-        $query = $this->db->get_where('mata_kuliah', array('kode' => $kode));
+        $query = $this->db->get_where('mahasiswa', array('kode' => $kode));
         // echo var_dump($query);
         return $query->result_array();
       }
