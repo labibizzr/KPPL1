@@ -20,7 +20,6 @@ class C_admin extends CI_Controller {
         }
 				else {
 
-
         $array1 = $this->M_mataKuliah->getMataKuliah();
 				$array2 = $this->M_dosen->getDosen();
 				$data['title'] = 'Dashboard Admin';
@@ -31,6 +30,36 @@ class C_admin extends CI_Controller {
 		$this->load->view('admin/index',$data);
 		$this->load->view('admin/templates/footer');
 	}
+	}
+
+	public function tabelMataKuliah()
+	{
+
+		if($this->isLogin()){
+
+			$array1 = $this->M_mataKuliah->getMataKuliah();
+
+			$data['title'] ='Mata Kuliah';
+			$data['page'] = 'Mata Kuliah';
+			$data['matkul'] = $array1;
+			$this->load->view('admin/templates/header',$data);
+			$this->load->view('admin/tabelMataKuliah',$data);
+			$this->load->view('admin/templates/footer');
+
+		}
+		else{
+			redirect('admin/login');
+		}
+
+	}
+
+	private function isLogin(){
+		if (isset($_SESSION['username']))
+			return true;
+
+			else
+
+			return false;
 	}
 
 	public function logout(){
