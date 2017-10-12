@@ -41,15 +41,15 @@
                       <td><?php echo $matkul_item['semester']; ?></td>
                       <td><?php echo $matkul_item['sks']; ?></td>
                       <td>
-                        <a class="btn" href="#">Edit</a>
-                        <a class="btn" href="#">Delete</a>
+                        <?php echo anchor(site_url(uri_string() . "/edit/" . $matkul_item['id']), 'Edit', array('title' => 'Edit data','class' => 'btn')); ?>
+                        <?php echo anchor(site_url(uri_string() . "/delete/" . $matkul_item['id']), 'Delete', array('title' => 'Edit data','class' => 'btn')); ?>
                       </td>
                     </tr>
                   <?php } ?>
                   </tbody>
                 </table>
               </div>
-              <a class="btn btn-primary" href="#">Create new record</a>
+              <?php echo anchor(site_url(uri_string(). "/create"), 'Create new record', array('title' => 'Create new Record', 'class' => 'btn btn-primary')); ?>
             </div>
             </div>
       </div>

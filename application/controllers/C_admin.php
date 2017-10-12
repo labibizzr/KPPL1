@@ -53,6 +53,28 @@ class C_admin extends CI_Controller {
 
 	}
 
+	public function createMataKuliah()
+	{
+		if($this->isLogin())
+		{
+			$this->load->helper('form');
+			$this->load->library('form_validation');
+
+			$data['title'] = 'Buat record mata kuliah baru';
+			$data['page'] = 'Mata kuliah / Create';
+			$this->load->view('admin/templates/header',$data);
+			$this->load->view('admin/form/createMataKuliah',$data);
+			$this->load->view('admin/templates/footer');
+		}
+	}
+
+	public function editMataKuliah()
+	{
+		if($this->isLogin()){
+
+		}
+	}
+
 	private function isLogin(){
 		if (isset($_SESSION['username']))
 			return true;

@@ -39,7 +39,7 @@
       <div class="card-header">Login</div>
       <div class="card-body">
         <?php
-            $frm_login = array('class' => 'form-signin', 'onsubmit' => 'return validasi(this)');
+            $frm_login = array('onsubmit' => 'return validasi(this)');
             echo form_open('admin/login', $frm_login);
            ?>
 
@@ -55,16 +55,10 @@
             <?php $txtpass = array('name' => 'password', 'class' => 'form-control', 'placeholder' => 'Masukan Password');
         	 echo form_password($txtpass); ?>
           </div>
-          <!-- <div class="form-group">
-            <div class="form-check">
-              <label class="form-check-label">
-                <input class="form-check-input" type="checkbox"> Remember Password</label>
-            </div>
-          </div> -->
+
           <?php $button = array('name' => 'login', 'class' => 'btn btn-lg btn-primary btn-block', 'type' => 'submit'); ?>
           <?php echo form_button($button,'Login'); ?>
-          <!-- <a class="btn btn-primary btn-block" href="index.html">Login</a> -->
-        <?php echo form_close(); ?>
+          <?php echo form_close(); ?>
         <div class="text-center">
           <a class="d-block small mt-3" href="register.html">Register an Account</a>
           <a class="d-block small" href="forgot-password.html">Forgot Password?</a>
