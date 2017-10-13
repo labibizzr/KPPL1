@@ -9,17 +9,28 @@ class M_mataKuliah extends CI_Model
     $this->load->database();
   }
 
-  public function getMataKuliah($kode=FALSE){
+  public function getMataKuliah($id=FALSE){
 
-      if($kode==FALSE){
+      if($id==FALSE){
         $query = $this->db->get('mata_kuliah');
         return $query->result_array();
       }
       else {
-        $query = $this->db->get_where('mata_kuliah', array('kode' => $kode));
+        $query = $this->db->get_where('mata_kuliah', array('id' => $id));
         // echo var_dump($query);
         return $query->result_array();
       }
+}
+
+public function newMataKuliah($data)
+{
+  return $this->db->insert('mata_kuliah', $data);
+}
+
+public function editMataKuliah($data)
+{
+  $this->db->where('id', $data['id']);
+  $this->db->update('mata_kuliah', $data);
 }
 }
 ?>

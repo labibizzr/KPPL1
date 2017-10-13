@@ -12,5 +12,6 @@ $route['admin/logout'] = 'C_admin/logout';
 $route['admin/tabel/dosen'] = 'C_admin/tabelDosen';
 $route['admin/tabel/matakuliah'] = 'C_admin/tabelMataKuliah';
 $route['admin/tabel/matakuliah/create'] = 'C_admin/createMataKuliah';
-$route['admin/tabel/matakuliah/edit/(:num)'] = 'C_admin/tabelDosen';
+$route['admin/tabel/matakuliah/edit/(:num)'] = 'C_admin/editMataKuliah/$1';
+$route['admin/tabel/matakuliah/delete/(:num)'] = 'C_admin/deleteMataKuliah/$1';
 $route['admin/tabel/kelas'] = 'C_admin/tabelDosen';

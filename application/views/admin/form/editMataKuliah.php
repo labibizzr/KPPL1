@@ -39,24 +39,24 @@
             <div class="form-group">
               <label for="exampleInputEmail1">Kode</label>
 
-              <?php $txtKode = array('name' => 'kode', 'class' => 'form-control', 'placeholder' => 'Masukan Kode Mata Kuliah', 'autofocus' =>'autofocus');
+              <?php $txtKode = array('name' => 'kode','value' => $matkul[0]['kode'], 'class' => 'form-control', 'placeholder' => 'Masukan Kode Mata Kuliah', 'autofocus' =>'autofocus');
       	     echo form_input($txtKode);?>
             </div>
             <div class="form-group">
               <label for="exampleInputPassword1">Nama Mata Kuliah</label>
-              <?php $txtNama = array('name' => 'nama', 'class' => 'form-control', 'placeholder' => 'Nama Mata Kuliah');
+              <?php $txtNama = array('name' => 'nama','value' => $matkul[0]['nama'], 'class' => 'form-control', 'placeholder' => 'Nama Mata Kuliah');
           	 echo form_input($txtNama); ?>
             </div>
 
             <div class="form-group">
               <label for="exampleInputPassword1">Semester</label>
-              <?php $txtSemester = array('name' => 'semester', 'class' => 'form-control', 'placeholder' => 'Semester');
+              <?php $txtSemester = array('name' => 'semester','value' => $matkul[0]['semester'], 'class' => 'form-control', 'placeholder' => 'Semester');
           	 echo form_input($txtSemester); ?>
             </div>
 
             <div class="form-group">
               <label for="exampleInputPassword1">SKS</label>
-              <?php $txtSks = array('name' => 'sks', 'class' => 'form-control', 'placeholder' => 'SKS');
+              <?php $txtSks = array('name' => 'sks','value' => $matkul[0]['sks'], 'class' => 'form-control', 'placeholder' => 'SKS');
           	 echo form_input($txtSks); ?>
             </div>
 
