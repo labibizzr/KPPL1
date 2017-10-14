@@ -124,6 +124,11 @@ class C_admin extends CI_Controller {
 		}
 	}
 
+	public function deleteMataKuliah($id){
+		$this->M_mataKuliah->deleteMataKuliah($id);
+		redirect(site_url('admin/tabel/matakuliah'));
+	}
+
 	private function isLogin(){
 		if (isset($_SESSION['username']))
 			return true;

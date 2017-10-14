@@ -32,5 +32,11 @@ public function editMataKuliah($data)
   $this->db->where('id', $data['id']);
   $this->db->update('mata_kuliah', $data);
 }
+public function deleteMataKuliah($id)
+{
+  $this->db->where('id', $id);
+  $this->db->delete('mata_kuliah');
+
+}
 }
 ?>
