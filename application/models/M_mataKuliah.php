@@ -36,7 +36,6 @@ public function deleteMataKuliah($id)
 {
   $this->db->where('id', $id);
   $this->db->delete('mata_kuliah');
-
 }
 }
 ?>

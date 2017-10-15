@@ -129,6 +129,91 @@ class C_admin extends CI_Controller {
 		redirect(site_url('admin/tabel/matakuliah'));
 	}
 
+	public function tabelDosen(){
+		if($this->isLogin()){
+
+			$array1 = $this->M_dosen->getDosen();
+
+			$data['title'] ='Dosen';
+			$data['page'] = 'Dosen';
+			$data['dosen'] = $array1;
+			$this->load->view('admin/templates/header',$data);
+			$this->load->view('admin/tabelDosen',$data);
+			$this->load->view('admin/templates/footer');
+
+		}
+		else{
+			redirect('admin/login');
+		}
+	}
+	public function deleteDosen($id){
+		$this->M_dosen->deleteDosen($id);
+		redirect(site_url('admin/tabel/dosen'));
+	}
+
+	public function createDosen()
+	{
+		if($this->isLogin())
+		{
+			$this->load->helper('form');
+			$this->load->library('form_validation');
+
+			$this->form_validation->set_rules('nip', 'kode', 'required');
+      $this->form_validation->set_rules('nama', 'nama', 'required');
+
+			$data['title'] = 'Memasukan dosen baru';
+			$data['page'] = 'Mata kuliah / Create';
+
+			if ($this->form_validation->run() == FALSE)
+        {
+					$this->load->view('admin/templates/header',$data);
+					$this->load->view('admin/form/createDosen',$data);
+					$this->load->view('admin/templates/footer');
+        }
+				else{
+					$data = array(
+						'nip' => $this->input->post('nip'),
+						'nama' => $this->input->post('nama'),
+					);
+					$this->M_dosen->newDosen($data);
+					redirect(site_url('admin/tabel/dosen'));
+				}
+		}
+	}
+
+	public function editDosen($id)
+	{
+		if($this->isLogin())
+		{
+			$this->load->helper('form');
+			$this->load->library('form_validation');
+
+			$this->form_validation->set_rules('nip', 'kode', 'required');
+      $this->form_validation->set_rules('nama', 'nama', 'required');
+
+
+			$data['title'] = 'Buat dosen baru';
+			$data['page'] = 'Mata kuliah / Create';
+			$idUpdate = $id;
+			$data['dosen'] = $this->M_dosen->getDosen($id);
+			if ($this->form_validation->run() == FALSE)
+        {
+					$this->load->view('admin/templates/header',$data);
+					$this->load->view('admin/form/editDosen',$data);
+					$this->load->view('admin/templates/footer');
+        }
+				else{
+					$data = array(
+						'id' => $idUpdate,
+						'nip' => $this->input->post('nip'),
+						'nama' => $this->input->post('nama')
+					);
+					$this->M_dosen->editDosen($data);
+					redirect(site_url('admin/tabel/dosen'));
+				}
+		}
+	}
+
 	private function isLogin(){
 		if (isset($_SESSION['username']))
 			return true;
