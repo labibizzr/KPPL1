@@ -9,6 +9,7 @@ class C_admin extends CI_Controller {
 		 $this->load->model('M_admin');
 		 $this->load->model('M_mataKuliah');
 		 $this->load->model('M_dosen');
+		 $this->load->model('M_kelas');
 		 $this->load->helper('url_helper');
   }
 
@@ -31,7 +32,7 @@ class C_admin extends CI_Controller {
 		$this->load->view('admin/templates/footer');
 	}
 	}
-
+// Tentang tabel mata kuliah
 	public function tabelMataKuliah()
 	{
 
@@ -128,7 +129,9 @@ class C_admin extends CI_Controller {
 		$this->M_mataKuliah->deleteMataKuliah($id);
 		redirect(site_url('admin/tabel/matakuliah'));
 	}
+// End of tabel mata kuliah
 
+// Start of tabel dosen methods
 	public function tabelDosen(){
 		if($this->isLogin()){
 
@@ -213,13 +216,106 @@ class C_admin extends CI_Controller {
 				}
 		}
 	}
+// 							End of tabel Dosen methods
+
+// Start of tabel kelas methods
+public function tabelKelas(){
+	if($this->isLogin()){
+
+		$array1 = $this->M_kelas->getKelas();
+
+		$data['title'] ='Kelas';
+		$data['page'] = 'Kelas';
+		$data['kelas'] = $array1;
+		$this->load->view('admin/templates/header',$data);
+		$this->load->view('admin/tabelKelas',$data);
+		$this->load->view('admin/templates/footer');
+
+	}
+	else{
+		redirect('admin/login');
+	}
+}
+
+public function deleteKelas($id){
+	$this->M_kelas->deleteKelas($id);
+	redirect(site_url('admin/tabel/kelas'));
+}
+
+public function createKelas()
+{
+	if($this->isLogin())
+	{
+		$this->load->helper('form');
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules('matkul', 'matkul', 'required');
+		$this->form_validation->set_rules('nama', 'nama', 'required');
+
+		$data['title'] = 'Memasukan kelas baru';
+		$data['page'] = 'Mata kuliah / Create';
+
+		$data['matkul'] = $this->M_mataKuliah->getMataKuliah();
+		// $temp;
+
+		if ($this->form_validation->run() == FALSE)
+			{
+				$this->load->view('admin/templates/header',$data);
+				$this->load->view('admin/form/createKelas',$data);
+				$this->load->view('admin/templates/footer');
+			}
+			else{
+				$data = array(
+					'mata_kuliah' => $this->input->post('matkul'),
+					'nama' => $this->input->post('nama'),
+				);
+				// echo var_dump($data['matkul']);
+				$this->M_kelas->newKelas($data);
+				redirect(site_url('admin/tabel/kelas'));
+			}
+	}
+}
+
+public function editKelas($id)
+{
+	if($this->isLogin())
+	{
+		$this->load->helper('form');
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules('matkul', 'matkul', 'required');
+		$this->form_validation->set_rules('nama', 'nama', 'required');
+
+
+		$data['title'] = 'Edit kelas';
+		$data['page'] = 'Mata kuliah / Create';
+		$idUpdate = $id;
+		$data['matkulKelas'] = $this->M_mataKuliah->getMataKuliah($id);
+		$data['matkul'] = $this->M_mataKuliah->getMataKuliah();
+		$data['kelas'] = $this->M_kelas->getKelas($id);
+		if ($this->form_validation->run() == FALSE)
+			{
+				$this->load->view('admin/templates/header',$data);
+				$this->load->view('admin/form/editKelas',$data);
+				$this->load->view('admin/templates/footer');
+			}
+			else{
+				$data = array(
+					'id' => $idUpdate,
+					'mata_kuliah' => $this->input->post('nip'),
+					'nama' => $this->input->post('nama')
+				);
+				$this->M_kelas->editKelas($data);
+				redirect(site_url('admin/tabel/kelas'));
+			}
+	}
+}
+// End of tabel kelas methods
 
 	private function isLogin(){
 		if (isset($_SESSION['username']))
 			return true;
-
 			else
-
 			return false;
 	}
 

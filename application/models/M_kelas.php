@@ -1,5 +1,5 @@
 <?php
-class M_mataKuliah extends CI_Model
+class M_kelas extends CI_Model
 {
 
   function __construct()
@@ -9,17 +9,32 @@ class M_mataKuliah extends CI_Model
     $this->load->database();
   }
 
-  public function getMataKuliah($kode=FALSE){
+  public function getKelas($id=FALSE){
 
-      if($kode==FALSE){
-        $query = $this->db->get('mata_kuliah');
+      if($id==FALSE){
+        $query = $this->db->get('kelas');
         return $query->result_array();
       }
       else {
-        $query = $this->db->get_where('mata_kuliah', array('kode' => $kode));
+        $query = $this->db->get_where('kelas', array('id' => $id));
         // echo var_dump($query);
         return $query->result_array();
       }
+}
+public function newKelas($data)
+{
+  return $this->db->insert('kelas', $data);
+}
+
+public function editKelas($data)
+{
+  $this->db->where('id', $data['id']);
+  $this->db->update('kelas', $data);
+}
+public function deleteKelas($id)
+{
+  $this->db->where('id', $id);
+  $this->db->delete('kelas');
 }
 }
 ?>
