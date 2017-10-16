@@ -27,7 +27,7 @@
         </ol> -->
         <div class="row">
 
-            <p>Create Mata Kuliah</p>
+            <p>Buat dosen baru</p>
           </div>
           <div class="col-6">
           <?php

@@ -86,7 +86,43 @@
         </div>
         </div>
 
+<!-- tabel kelas -->
 
+<!-- <div class="card mb-3">
+        <div class="card-header">
+          <i class="fa fa-table"></i> Tabel Kelas</div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
+              <thead>
+                <tr>
+                  <th>No.</th>
+                  <th>nip</th>
+                  <th>Nama Dosen</th>
+                </tr>
+              </thead>
+              <tfoot>
+                <tr>
+                  <th>No.</th>
+                  <th>nip</th>
+                  <th>Nama Dosen</th>
+                </tr>
+              </tfoot>
+              <tbody>
+                <?php
+                $i = 0;
+                foreach ($dosen as $dosen_item) { ?>
+                <tr>
+                  <td><?php echo ++$i;?>
+                  <td><?php echo $dosen_item['nip']; ?></td>
+                  <td><?php echo $dosen_item['nama']; ?></td>
+                </tr>
+              <?php } ?>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        </div> -->
       <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
     </div>
   </div>

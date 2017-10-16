@@ -2,13 +2,18 @@
   <script language="javascript">
 
   function validasi(form){
-    if (form.kode.value==""){
-    alert("Username masih kosong");
+    if (form.matkulId.value==""){
+    alert("Mata kuliah masih kosong");
     form.username.focus();
     return (false);
   }
-    if (form.nama.value==""){
-    alert("Password masih kosong");
+    if (form.dosenId.value==""){
+    alert("Nama dosen masih kosong");
+    form.password.focus();
+    return (false);
+  }
+  if (form.nama.value==""){
+    alert("Nama masih kosong");
     form.password.focus();
     return (false);
   }
@@ -27,7 +32,7 @@
         </ol> -->
         <div class="row">
 
-            <p>Create Mata Kuliah</p>
+            <p>Create Kelas</p>
           </div>
           <div class="col-6">
           <?php
@@ -37,22 +42,18 @@
 
           <div class="form-group">
             <div class="form-group">
-              <label for="exampleInputEmail1">Mata Kuliah</label>
-
+              <label for="matkul">Mata Kuliah</label>
+            <br>
+            <select class="form-control" id="matkul" name='matkulId'>
               <?php
 
-              // echo var_dump($matkul);
-            //   $txtMataKuliah = array('name' => 'nip', 'class' => 'form-control', 'placeholder' => 'Masukan Kode Mata Kuliah', 'autofocus' =>'autofocus');
-      	    //  echo form_input($txtMataKuliah);?>
+              foreach($matkul as $row)
+              {
+                echo '<option value="'.$row['id'].'">'. $row['nama'].'</option>';
+              }
 
-              <?php
-
-              echo form_dropdown('matkul', $matkul[0]['nama']);
-              // foreach($matkul as $row)
-              // {
-              //   echo '<option value="'.$row['nama'].'">'.$row['nama'].'</option>';
-              // }
               ?>
+              </select>
 
             </div>
             <div class="form-group">
@@ -60,7 +61,20 @@
               <?php $txtNama = array('name' => 'nama', 'class' => 'form-control', 'placeholder' => 'Nama Mata Kuliah');
           	 echo form_input($txtNama); ?>
             </div>
+            <div class="form-group">
+            <label for="dosen">Nama Dosen</label>
+            <br>
+            <select id="dosen" class="form-control" name='dosenId'>
+              <?php
 
+              foreach($dosen as $row)
+              {
+                echo '<option value="'.$row['id'].'">'. $row['nama'].'</option>';
+              }
+
+              ?>
+              </select>
+              </div>
             <?php $button = array('name' => 'Submit', 'class' => 'btn btn-lg btn-primary', 'type' => 'submit');
             echo form_button($button,'Submit');
              echo anchor(site_url('admin/tabel/kelas'), 'Cancel', array('title' => 'Cancel', 'class' => 'btn'));

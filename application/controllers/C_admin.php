@@ -22,10 +22,12 @@ class C_admin extends CI_Controller {
 				else {
 
         $array1 = $this->M_mataKuliah->getMataKuliah();
-				$array2 = $this->M_dosen->getDosen();
-				$data['title'] = 'Dashboard Admin';
+		$array2 = $this->M_dosen->getDosen();
+
+		$data['title'] = 'Dashboard Admin';
         $data['matkul'] = $array1;
-				$data['dosen'] = $array2;
+		$data['dosen'] = $array2;
+		$data['kelas'] = $this->M_kelah->getKelas();
 
 		$this->load->view('admin/templates/header',$data);
 		$this->load->view('admin/index',$data);
@@ -62,8 +64,8 @@ class C_admin extends CI_Controller {
 			$this->load->library('form_validation');
 
 			$this->form_validation->set_rules('kode', 'kode', 'required');
-      $this->form_validation->set_rules('nama', 'nama', 'required');
-      $this->form_validation->set_rules('semester', 'semester', 'required');
+      		$this->form_validation->set_rules('nama', 'nama', 'required');
+      		$this->form_validation->set_rules('semester', 'semester', 'required');
 			$this->form_validation->set_rules('sks', 'sks', 'required');
 
 			$data['title'] = 'Buat record mata kuliah baru';
@@ -222,11 +224,12 @@ class C_admin extends CI_Controller {
 public function tabelKelas(){
 	if($this->isLogin()){
 
-		$array1 = $this->M_kelas->getKelas();
+	
 
+		// $data['dosen'] = $this->M_dosen->getDosen();
 		$data['title'] ='Kelas';
 		$data['page'] = 'Kelas';
-		$data['kelas'] = $array1;
+		$data['kelas'] = $this->M_kelas->getKelas();
 		$this->load->view('admin/templates/header',$data);
 		$this->load->view('admin/tabelKelas',$data);
 		$this->load->view('admin/templates/footer');
@@ -249,14 +252,15 @@ public function createKelas()
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 
-		$this->form_validation->set_rules('matkul', 'matkul', 'required');
+		$this->form_validation->set_rules('matkulId', 'matkul', 'required');
+		$this->form_validation->set_rules('dosenId', 'dosen', 'required');
 		$this->form_validation->set_rules('nama', 'nama', 'required');
 
 		$data['title'] = 'Memasukan kelas baru';
 		$data['page'] = 'Mata kuliah / Create';
 
 		$data['matkul'] = $this->M_mataKuliah->getMataKuliah();
-		// $temp;
+		$data['dosen'] = $this->M_dosen->getDosen();
 
 		if ($this->form_validation->run() == FALSE)
 			{
@@ -266,8 +270,10 @@ public function createKelas()
 			}
 			else{
 				$data = array(
-					'mata_kuliah' => $this->input->post('matkul'),
+
+					'mata_kuliahId' => $this->input->post('matkulId'),
 					'nama' => $this->input->post('nama'),
+					'dosenId' => $this->input->post('dosenId')
 				);
 				// echo var_dump($data['matkul']);
 				$this->M_kelas->newKelas($data);
@@ -283,16 +289,18 @@ public function editKelas($id)
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 
-		$this->form_validation->set_rules('matkul', 'matkul', 'required');
+		$this->form_validation->set_rules('matkulId', 'matkul', 'required');
+		$this->form_validation->set_rules('dosenId', 'dosen', 'required');
 		$this->form_validation->set_rules('nama', 'nama', 'required');
 
-
-		$data['title'] = 'Edit kelas';
+		$data['title'] = 'Memasukan kelas baru';
 		$data['page'] = 'Mata kuliah / Create';
-		$idUpdate = $id;
-		$data['matkulKelas'] = $this->M_mataKuliah->getMataKuliah($id);
-		$data['matkul'] = $this->M_mataKuliah->getMataKuliah();
+
 		$data['kelas'] = $this->M_kelas->getKelas($id);
+		$data['matkul'] = $this->M_mataKuliah->getMataKuliah();
+		$data['dosen'] = $this->M_dosen->getDosen();
+
+
 		if ($this->form_validation->run() == FALSE)
 			{
 				$this->load->view('admin/templates/header',$data);
@@ -301,11 +309,13 @@ public function editKelas($id)
 			}
 			else{
 				$data = array(
-					'id' => $idUpdate,
-					'mata_kuliah' => $this->input->post('nip'),
-					'nama' => $this->input->post('nama')
+
+					'mata_kuliahId' => $this->input->post('matkulId'),
+					'nama' => $this->input->post('nama'),
+					'dosenId' => $this->input->post('dosenId')
 				);
-				$this->M_kelas->editKelas($data);
+				// echo var_dump($data['matkul']);
+				$this->M_kelas->newKelas($data);
 				redirect(site_url('admin/tabel/kelas'));
 			}
 	}

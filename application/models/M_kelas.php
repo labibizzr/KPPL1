@@ -12,12 +12,16 @@ class M_kelas extends CI_Model
   public function getKelas($id=FALSE){
 
       if($id==FALSE){
-        $query = $this->db->get('kelas');
-        return $query->result_array();
+      
+        $query = $this->db->select('*, A.nama as nama matkul, C.nama as nama kelas, B.nama as nama dosen, C.id as kelasId')
+                  ->from('mata_kuliah AS A')
+                  ->join('kelas as C', 'A.id = C.mata_kuliahId', 'INNER')
+                  ->join('dosen as B', 'B.id = C.dosenId','INNER');
+                  $result = $this->db->get();
+        return $result->result_array();
       }
       else {
-        $query = $this->db->get_where('kelas', array('id' => $id));
-        // echo var_dump($query);
+       $query = $this->db->get_where('kelas', array('id' => $id));
         return $query->result_array();
       }
 }
