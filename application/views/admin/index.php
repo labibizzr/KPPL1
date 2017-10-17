@@ -86,6 +86,47 @@
         </div>
         </div>
 
+<div class="card mb-3">
+            <div class="card-header">
+              <i class="fa fa-table"></i> Tabel Kelas</div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                
+                    <tr>
+                   
+                      <th>Nama Kelas</th>
+                      <th>Mata Kuliah</th>
+                      <th>Nama dosen</th>
+                      
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                   
+                      <th>Nama Kelas</th>
+                      <th>Mata Kuliah</th>
+                      <th>Nama dosen</th>
+                      
+                    </tr>
+                  </tfoot>
+                  <tbody>
+                    <?php foreach ($kelas as $kelas_item) { ?>
+                    <tr>
+                  
+                      <td><?php echo $kelas_item['nama kelas']; ?></td>
+                      <td><?php echo $kelas_item['nama matkul']; ?></td>
+                      <td><?php echo $kelas_item['nama dosen']; ?></td>
+                      
+                    </tr>
+                  <?php } ?>
+                  </tbody>
+                </table>
+              </div>
+              <?php echo anchor(site_url(uri_string(). "/create"), 'Buat kelas baru', array('title' => 'Buat kelas baru', 'class' => 'btn btn-primary')); ?>
+            </div>
+            </div>
 <!-- tabel kelas -->
 
 <!-- <div class="card mb-3">
@@ -123,7 +164,7 @@
           </div>
         </div>
         </div> -->
-      <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+      <!-- <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> -->
     </div>
   </div>
   <!-- /.container-fluid-->
