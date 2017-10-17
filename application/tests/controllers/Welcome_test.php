@@ -10,7 +10,7 @@
 
 class Welcome_test extends TestCase
 {
-	public function test_index()
+	public function test_welcome_page()
 	{
 		$output = $this->request('GET', 'welcome/index');
 		$this->assertContains('<title>Selamat datang di SiSchedule</title>', $output);

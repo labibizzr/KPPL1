@@ -118,7 +118,7 @@
                       <td><?php echo $kelas_item['nama kelas']; ?></td>
                       <td><?php echo $kelas_item['nama matkul']; ?></td>
                       <td><?php echo $kelas_item['nama dosen']; ?></td>
-                      
+                          
                     </tr>
                   <?php } ?>
                   </tbody>

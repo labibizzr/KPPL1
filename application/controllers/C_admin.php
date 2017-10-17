@@ -25,7 +25,7 @@ class C_admin extends CI_Controller {
 		$array2 = $this->M_dosen->getDosen();
 
 		$data['title'] = 'Dashboard Admin';
-        $data['matkul'] = $array1;
+                $data['matkul'] = $array1;
 		$data['dosen'] = $array2;
 		$data['kelas'] = $this->M_kelas->getKelas();
 
