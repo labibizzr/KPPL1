@@ -31,17 +31,5 @@ class M_admin extends CI_Model
     			}
   }
 
-  public function getMataKuliah($kode=FALSE){
-
-      if($kode==FALSE){
-        $query = $this->db->get('mata_kuliah');
-        return $query->result_array();
-      }
-      else {
-        $query = $this->db->get_where('mata_kuliah', array('kode' => $kode));
-        // echo var_dump($query);
-        return $query->result_array();
-      }
-}
 }
 ?>

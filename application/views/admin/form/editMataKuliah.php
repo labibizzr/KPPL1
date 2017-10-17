@@ -49,16 +49,42 @@
             </div>
 
             <div class="form-group">
+            <label for ="semester">Semester</label>
+            <?php $options = array(
+              '1' => '1',
+              '2' => '2',
+              '3' => '3',
+              '4' => '4',
+              '5' => '5',
+              '6' => '6',
+              '7' => '7',
+              '8' => '8'); 
+
+            echo form_dropdown('semester',$options,$matkul[0]['semester'],'class = form-control');
+            ?>
+            </div>
+<!--             <div class="form-group">
               <label for="exampleInputPassword1">Semester</label>
               <?php $txtSemester = array('name' => 'semester','value' => $matkul[0]['semester'], 'class' => 'form-control', 'placeholder' => 'Semester');
           	 echo form_input($txtSemester); ?>
-            </div>
+            </div> -->
 
             <div class="form-group">
-              <label for="exampleInputPassword1">SKS</label>
-              <?php $txtSks = array('name' => 'sks','value' => $matkul[0]['sks'], 'class' => 'form-control', 'placeholder' => 'SKS');
-          	 echo form_input($txtSks); ?>
+            <label for ="sks">SKS</label>
+            <?php $options = array(
+              
+              '2' => '2',
+              '3' => '3',
+              '4' => '4',
+              '5' => '5',
+              '6' => '6',
+              '7' => '7',
+              '8' => '8',); 
+
+            echo form_dropdown('sks',$options,$matkul[0]['sks'],'class = form-control');
+            ?>
             </div>
+
 
             <?php $button = array('name' => 'Submit', 'class' => 'btn btn-lg btn-primary', 'type' => 'submit');?>
             <div class="row">

@@ -27,7 +27,7 @@ class C_admin extends CI_Controller {
 		$data['title'] = 'Dashboard Admin';
         $data['matkul'] = $array1;
 		$data['dosen'] = $array2;
-		$data['kelas'] = $this->M_kelah->getKelas();
+		$data['kelas'] = $this->M_kelas->getKelas();
 
 		$this->load->view('admin/templates/header',$data);
 		$this->load->view('admin/index',$data);
@@ -99,8 +99,8 @@ class C_admin extends CI_Controller {
 			$this->load->library('form_validation');
 
 			$this->form_validation->set_rules('kode', 'kode', 'required');
-      $this->form_validation->set_rules('nama', 'nama', 'required');
-      $this->form_validation->set_rules('semester', 'semester', 'required');
+      		$this->form_validation->set_rules('nama', 'nama', 'required');
+      		$this->form_validation->set_rules('semester', 'semester', 'required');
 			$this->form_validation->set_rules('sks', 'sks', 'required');
 
 			$data['title'] = 'Buat record mata kuliah baru';

@@ -13,7 +13,7 @@ class M_kelas extends CI_Model
 
       if($id==FALSE){
       
-        $query = $this->db->select('*, A.nama as nama matkul, C.nama as nama kelas, B.nama as nama dosen, C.id as kelasId')
+        $query = $this->db->select('*, A.nama as nama matkul, C.nama as nama kelas, B.nama as nama dosen, C.id as kelasId, A.id as mata_kuliahId')
                   ->from('mata_kuliah AS A')
                   ->join('kelas as C', 'A.id = C.mata_kuliahId', 'INNER')
                   ->join('dosen as B', 'B.id = C.dosenId','INNER');
