@@ -335,17 +335,21 @@ public function editKelas($id)
 	}
 
 	public function login(){
-		$this->load->helper('form');
+            if ($this->isLogin()){
+                redirect('admin');
+            }
+            else{
+    $this->load->helper('form');
     $this->load->library('form_validation');
 
-		$data['title'] = "Halaman login";
+		$data['title'] = "Halaman login admin";
 
 		$this->form_validation->set_rules('username', 'Username', 'required');
-	  $this->form_validation->set_rules('password', 'Password', 'required');
+                $this->form_validation->set_rules('password', 'Password', 'required');
 
 		if($this->form_validation->run() == FALSE)  {
 
-     $this->load->view('admin/login', $data);
+                $this->load->view('admin/login', $data);
 
       }
 			else {
@@ -357,12 +361,12 @@ public function editKelas($id)
 					$_SESSION['username'] = $this->input->post('username');
 
 					 redirect('/admin');
-					//  echo var_dump(isset($_SESSION['username']));
 				}
 
 
 	}
-}
+            }
+        }
 }
 
 ?>
