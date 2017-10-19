@@ -17,6 +17,16 @@ class C_admin_test extends TestCase {
     {
         $this->resetInstance();
     }
+    public function test_logout_berhasil(){
+        $this->request('GET','admin/logout');
+        $this->assertFalse(isset($_SESSION['username']));
+        $this->assertRedirect('admin/login');
+    }
+    public function test_akses_page_login_ketika_sudah_login(){
+        $_SESSION['username'] = 'admin@admin.com';
+        $this->request('GET','admin/login');
+        $this->assertRedirect('admin');
+    }
     public function test_index_masuk_web_admin_tanpa_login(){
         $this->request('GET','admin');
         $this->assertRedirect('admin/login');
@@ -135,7 +145,7 @@ class C_admin_test extends TestCase {
     public function test_akses_hal_edit_dosen_sukses_dengan_login(){
         $_SESSION['username'] = 'admin@admin.com';
         $output = $this->request('GET','admin/tabel/dosen/edit/2');
-        $this->assertContains('<title>Edit dosen',$output);
+        $this->assertContains('<title>Edit dosen', $output);
     }
  
     public function test_akses_hal_edit_dosen_tanpa_login(){
@@ -149,6 +159,15 @@ class C_admin_test extends TestCase {
             'nama' => 'dosenTesting'
         ]);
         $this->assertRedirect('admin/tabel/dosen', $output);
+    }
+    public function test_submit_create_kelas_sukses(){
+        $_SESSION['username'] = 'admin@admin.com';
+        $output = $this->request('POST','admin/tabel/kelas/create',[
+            'matkulId' => '1',
+            'nama' => 'kelasTesting',
+            'dosenId' => '2'
+        ]);
+        $this->assertRedirect('admin/tabel/kelas',$output);
     }
 //    public function test_delete_dosen_sukses(){
 //        
