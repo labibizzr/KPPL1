@@ -17,6 +17,10 @@ class C_admin_test extends TestCase {
     {
         $this->resetInstance();
     }
+//    public function test_404(){
+//       $result =  $this->request('GET', 'admin/XDD');
+//        $this->assertContains('404', $result);
+//    }
     public function test_logout_berhasil(){
         $this->request('GET','admin/logout');
         $this->assertFalse(isset($_SESSION['username']));
@@ -160,15 +164,15 @@ class C_admin_test extends TestCase {
         ]);
         $this->assertRedirect('admin/tabel/dosen', $output);
     }
-    public function test_submit_create_kelas_sukses(){
-        $_SESSION['username'] = 'admin@admin.com';
-        $output = $this->request('POST','admin/tabel/kelas/create',[
-            'matkulId' => '1',
-            'nama' => 'kelasTesting',
-            'dosenId' => '2'
-        ]);
-        $this->assertRedirect('admin/tabel/kelas',$output);
-    }
+//    public function test_submit_create_kelas_sukses(){
+//        $_SESSION['username'] = 'admin@admin.com';
+//        $output = $this->request('POST','admin/tabel/kelas/create',[
+//            'matkulId' => '1',
+//            'nama' => 'kelasTesting',
+//            'dosenId' => '2'
+//        ]);
+//        $this->assertRedirect('admin/tabel/kelas',$output);
+//    }
 //    public function test_delete_dosen_sukses(){
 //        
 //    }
