@@ -317,13 +317,13 @@ public function editKelas($id)
 			}
 			else{
 				$data = array(
-
+                                        'id' => $id,
 					'mata_kuliahId' => $this->input->post('matkulId'),
 					'nama' => $this->input->post('nama'),
 					'dosenId' => $this->input->post('dosenId')
 				);
 				// echo var_dump($data['matkul']);
-				$this->M_kelas->newKelas($data);
+				$this->M_kelas->editKelas($data);
 				redirect(site_url('admin/tabel/kelas'));
 			}
 	}
