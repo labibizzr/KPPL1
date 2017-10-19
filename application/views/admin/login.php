@@ -59,9 +59,12 @@
           <?php $button = array('name' => 'login', 'class' => 'btn btn-lg btn-primary btn-block', 'type' => 'submit'); ?>
           <?php echo form_button($button,'Login'); ?>
           <?php echo form_close(); ?>
+<<<<<<< HEAD
         <div class="text-center">
           
         </div>
+=======
+>>>>>>> labib-testing
       </div>
     </div>
   </div>

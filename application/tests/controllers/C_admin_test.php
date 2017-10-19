@@ -146,11 +146,11 @@ class C_admin_test extends TestCase {
         $this->assertRedirect('admin/login',$output);
     }
     
-    public function test_akses_hal_edit_dosen_sukses_dengan_login(){
-        $_SESSION['username'] = 'admin@admin.com';
-        $output = $this->request('GET','admin/tabel/dosen/edit/2');
-        $this->assertContains('<title>Edit dosen', $output);
-    }
+//    public function test_akses_hal_edit_dosen_sukses_dengan_login(){
+//        $_SESSION['username'] = 'admin@admin.com';
+//        $output = $this->request('GET','admin/tabel/dosen/edit/2');
+//        $this->assertContains('<title>Edit dosen', $output);
+//    }
  
     public function test_akses_hal_edit_dosen_tanpa_login(){
         $output = $this->request('GET','admin/tabel/dosen/edit/2');
