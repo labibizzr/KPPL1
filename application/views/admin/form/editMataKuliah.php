@@ -3,12 +3,12 @@
 
   function validasi(form){
     if (form.kode.value==""){
-    alert("Username masih kosong");
+    alert("Kode masih kosong");
     form.username.focus();
     return (false);
   }
     if (form.nama.value==""){
-    alert("Password masih kosong");
+    alert("field Nama masih kosong");
     form.password.focus();
     return (false);
   }
@@ -18,16 +18,10 @@
 <!-- end of script alert  -->
   <div class="content-wrapper">
       <div class="container-fluid">
-        <!-- Breadcrumbs-->
-        <!-- <ol class="breadcrumb">
-          <li class="breadcrumb-item">
-            <a href="index.html">Dashboard</a>
-          </li>
-          <li class="breadcrumb-item active"><?php echo $page ?></li>
-        </ol> -->
+       
         <div class="row">
 
-            <p>Create Mata Kuliah</p>
+            <p>Edit Mata Kuliah</p>
           </div>
           <div class="col-6">
           <?php

@@ -103,7 +103,7 @@ class C_admin extends CI_Controller {
       		$this->form_validation->set_rules('semester', 'semester', 'required');
 			$this->form_validation->set_rules('sks', 'sks', 'required');
 
-			$data['title'] = 'Buat record mata kuliah baru';
+			$data['title'] = 'Edit record mata kuliah';
 			$data['page'] = 'Mata kuliah / Create';
 			$idUpdate = $id;
 			$data['matkul'] = $this->M_mataKuliah->getMataKuliah($id);
@@ -128,8 +128,12 @@ class C_admin extends CI_Controller {
 	}
 
 	public function deleteMataKuliah($id){
+            if($this->isLogin()){
 		$this->M_mataKuliah->deleteMataKuliah($id);
 		redirect(site_url('admin/tabel/matakuliah'));
+            }
+            else
+                redirect('admin/login');
 	}
 // End of tabel mata kuliah
 
@@ -152,8 +156,11 @@ class C_admin extends CI_Controller {
 		}
 	}
 	public function deleteDosen($id){
+            if($this->isLogin()){
 		$this->M_dosen->deleteDosen($id);
 		redirect(site_url('admin/tabel/dosen'));
+            }
+            redirect('admin/login');
 	}
 
 	public function createDosen()
@@ -197,8 +204,8 @@ class C_admin extends CI_Controller {
       $this->form_validation->set_rules('nama', 'nama', 'required');
 
 
-			$data['title'] = 'Buat dosen baru';
-			$data['page'] = 'Mata kuliah / Create';
+			$data['title'] = 'Edit dosen ';
+			
 			$idUpdate = $id;
 			$data['dosen'] = $this->M_dosen->getDosen($id);
 			if ($this->form_validation->run() == FALSE)
@@ -217,6 +224,7 @@ class C_admin extends CI_Controller {
 					redirect(site_url('admin/tabel/dosen'));
 				}
 		}
+                redirect('admin/login');
 	}
 // 							End of tabel Dosen methods
 
@@ -270,12 +278,11 @@ public function createKelas()
 			}
 			else{
 				$data = array(
-
 					'mata_kuliahId' => $this->input->post('matkulId'),
 					'nama' => $this->input->post('nama'),
 					'dosenId' => $this->input->post('dosenId')
 				);
-				// echo var_dump($data['matkul']);
+				
 				$this->M_kelas->newKelas($data);
 				redirect(site_url('admin/tabel/kelas'));
 			}
@@ -309,13 +316,13 @@ public function editKelas($id)
 			}
 			else{
 				$data = array(
-
+                                        'id' => $id,
 					'mata_kuliahId' => $this->input->post('matkulId'),
 					'nama' => $this->input->post('nama'),
 					'dosenId' => $this->input->post('dosenId')
 				);
 				// echo var_dump($data['matkul']);
-				$this->M_kelas->newKelas($data);
+				$this->M_kelas->editKelas($data);
 				redirect(site_url('admin/tabel/kelas'));
 			}
 	}
