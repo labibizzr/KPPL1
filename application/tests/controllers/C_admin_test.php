@@ -61,8 +61,8 @@ class C_admin_test extends TestCase {
         $this->assertContains('<title>Kelas - SiSchedule</title>', $result);
     }
     
-    public function test_page_login_admin(){
-       $result =  $this->request('GET','admin/login');
+    public function test_access_page_login_admin(){
+        $result =  $this->request('GET','admin/login');
         $this->assertContains('<title>Halaman login',$result);
     }
     
@@ -85,5 +85,39 @@ class C_admin_test extends TestCase {
         $_SESSION['username'] = 'admin@admin.com';
         $this->request('GET','admin/login');
         $this->assertRedirect('admin');
+    }
+    public function test_access_edit_matkul_keluar_page_matkul(){
+        $_SESSION['username'] = 'admin@admin.com';
+        $result = $this->request('GET','admin/tabel/matakuliah/edit/1');
+        $this->assertContains('<title>Edit record', $result);
+    }
+    public function test_submit_edit_matkul_sukses(){
+        $_SESSION['username'] = 'admin@admin.com';
+        $output = $this->request('POST','admin/tabel/matakuliah/edit/4',[
+            'kode' => 'KStest',
+            'nama' => 'namaTest',
+            'semester' => '8',
+            'sks' => '8'
+        ]);
+        $this->assertRedirect('admin/tabel/matakuliah', $output);
+    }
+    public function test_submit_edit_matkul_kosong_satu_field_yaitu_nama(){
+        $_SESSION['username'] = 'admin@admin.com';
+        $output = $this->request('POST','admin/tabel/matakuliah/edit/4',[
+            'kode' => 'KStest',
+            'nama' => '',
+            'semester' => '8',
+            'sks' => '8'
+        ]);
+        $this->assertContains('field Nama masih kosong', $output);
+    }
+    public function test_submit_create_matkul_baru_sukses(){
+        $_SESSION['username'] = 'admin@admin.com';
+        $output = $this->request('POST','admin/tabel/matakuliah/create',[
+            'kode' => 'KStest',
+            'nama' => '',
+            'semester' => '8',
+            'sks' => '8'
+        ]);
     }
 }

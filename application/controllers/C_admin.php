@@ -103,7 +103,7 @@ class C_admin extends CI_Controller {
       		$this->form_validation->set_rules('semester', 'semester', 'required');
 			$this->form_validation->set_rules('sks', 'sks', 'required');
 
-			$data['title'] = 'Buat record mata kuliah baru';
+			$data['title'] = 'Edit record mata kuliah';
 			$data['page'] = 'Mata kuliah / Create';
 			$idUpdate = $id;
 			$data['matkul'] = $this->M_mataKuliah->getMataKuliah($id);
