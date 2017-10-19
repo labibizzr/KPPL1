@@ -111,13 +111,47 @@ class C_admin_test extends TestCase {
         ]);
         $this->assertContains('field Nama masih kosong', $output);
     }
-    public function test_submit_create_matkul_baru_sukses(){
-        $_SESSION['username'] = 'admin@admin.com';
-        $output = $this->request('POST','admin/tabel/matakuliah/create',[
-            'kode' => 'KStest',
-            'nama' => '',
-            'semester' => '8',
-            'sks' => '8'
-        ]);
+//    public function test_submit_create_matkul_baru_sukses(){
+//        $_SESSION['username'] = 'admin@admin.com';
+//        $output = $this->request('POST','admin/tabel/matakuliah/create',[
+//            'kode' => 'KStest1',
+//            'nama' => 'test1',
+//            'semester' => '8',
+//            'sks' => '8'
+//        ]);
+//        $this->assertRedirect('admin/tabel/matakuliah', $output);
+//    }
+//    public function test_delete_matkul_sukses(){
+//        $_SESSION['username'] = 'admin@admin.com';
+//        $output = $this->request('GET','admin/tabel/matakuliah/delete/11');
+//        $this->assertRedirect('admin/tabel/matakuliah',$output);
+//    }
+    
+    public function test_delete_matkul_tanpa_login(){
+        $output = $this->request('GET','admin/tabel/matakuliah/delete/1');
+        $this->assertRedirect('admin/login',$output);
     }
+    
+    public function test_akses_hal_edit_dosen_sukses_dengan_login(){
+        $_SESSION['username'] = 'admin@admin.com';
+        $output = $this->request('GET','admin/tabel/dosen/edit/2');
+        $this->assertContains('<title>Edit dosen',$output);
+    }
+ 
+    public function test_akses_hal_edit_dosen_tanpa_login(){
+        $output = $this->request('GET','admin/tabel/dosen/edit/2');
+        $this->assertRedirect('admin/login');
+    }
+    public function test_submit_edit_dosen_sukses(){
+        $_SESSION['username'] = 'admin@admin.com';
+        $output = $this->request('POST','admin/tabel/dosen/edit/2',[
+            'nip' => '12345',
+            'nama' => 'dosenTesting'
+        ]);
+        $this->assertRedirect('admin/tabel/dosen', $output);
+    }
+//    public function test_delete_dosen_sukses(){
+//        
+//    }
+    
 }

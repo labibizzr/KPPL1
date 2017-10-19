@@ -128,8 +128,12 @@ class C_admin extends CI_Controller {
 	}
 
 	public function deleteMataKuliah($id){
+            if($this->isLogin()){
 		$this->M_mataKuliah->deleteMataKuliah($id);
 		redirect(site_url('admin/tabel/matakuliah'));
+            }
+            else
+                redirect('admin/login');
 	}
 // End of tabel mata kuliah
 
@@ -152,8 +156,11 @@ class C_admin extends CI_Controller {
 		}
 	}
 	public function deleteDosen($id){
+            if($this->isLogin()){
 		$this->M_dosen->deleteDosen($id);
 		redirect(site_url('admin/tabel/dosen'));
+            }
+            redirect('admin/login');
 	}
 
 	public function createDosen()
@@ -197,8 +204,8 @@ class C_admin extends CI_Controller {
       $this->form_validation->set_rules('nama', 'nama', 'required');
 
 
-			$data['title'] = 'Buat dosen baru';
-			$data['page'] = 'Mata kuliah / Create';
+			$data['title'] = 'Edit dosen ';
+			
 			$idUpdate = $id;
 			$data['dosen'] = $this->M_dosen->getDosen($id);
 			if ($this->form_validation->run() == FALSE)
@@ -217,6 +224,7 @@ class C_admin extends CI_Controller {
 					redirect(site_url('admin/tabel/dosen'));
 				}
 		}
+                redirect('admin/login');
 	}
 // 							End of tabel Dosen methods
 
