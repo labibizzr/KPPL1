@@ -39,12 +39,12 @@
             <div class="form-group">
               <label for="exampleInputEmail1">NIP</label>
 
-              <?php $txtNip = array('name' => 'nip', 'class' => 'form-control', 'placeholder' => 'Masukan Kode Mata Kuliah', 'autofocus' =>'autofocus');
+              <?php $txtNip = array('name' => 'nip', 'class' => 'form-control', 'placeholder' => 'Masukan NIP Dosen', 'autofocus' =>'autofocus');
       	     echo form_input($txtNip);?>
             </div>
             <div class="form-group">
-              <label for="exampleInputPassword1">Nama Mata Kuliah</label>
-              <?php $txtNama = array('name' => 'nama', 'class' => 'form-control', 'placeholder' => 'Nama Mata Kuliah');
+              <label for="exampleInputPassword1">Nama Dosen</label>
+              <?php $txtNama = array('name' => 'nama', 'class' => 'form-control', 'placeholder' => 'Nama Dosen');
           	 echo form_input($txtNama); ?>
             </div>
 
